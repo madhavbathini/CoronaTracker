@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CoronaServiceService } from '../corona-service.service';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
-  constructor() {}
-
+  countries: any;
+  constructor(private corona: CoronaServiceService) {}
+  ngOnInit() {
+    this.corona.getData().subscribe((data) => {
+      console.log(data);
+      this.countries = data;
+    });
+  }
 }
