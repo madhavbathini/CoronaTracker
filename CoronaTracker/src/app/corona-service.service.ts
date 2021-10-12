@@ -8,8 +8,14 @@ import { Country } from './country';
 })
 export class CoronaServiceService {
   public apiData: string = 'https://api.covid19api.com/countries';
+  // public url:string='https://api.covid19api.com/total/dayone/country/south-africa';
   constructor(private http: HttpClient) {}
   getData(): Observable<Country[]> {
     return this.http.get<Country[]>(this.apiData);
+  }
+
+  getCoronaRealTimeData(country: any): Observable<Country[]> {
+    const url = 'https://api.covid19api.com/total/dayone/country/' + country;
+    return this.http.get<Country[]>(url);
   }
 }

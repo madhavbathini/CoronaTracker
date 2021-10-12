@@ -1,13 +1,21 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      CoronaTracker
-    </ion-title>
+    <ion-title> CoronaTracker </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <select id="width">
-    <option *ngFor='let data of countries'>{{data?.Country}}</option>
-  </select>
+<ion-content [fullscreen]="true" id="color" id="bgimage">
+  <div id="positionOne">
+    <ion-select [(ngModel)]="country" interface="action-sheet" placeholder="Select" id="width">
+      <ion-select-option *ngFor="let country of countries" [value]="country?.Slug">
+        {{country?.Country}}
+      </ion-select-option>
+    </ion-select>
+  </div>
+  <div id="positionTwo">
+    <ion-button color="light"  (click)="getcoronaData()">Get Data</ion-button>
+    <h1 class="positionThree">Confirmed Cases :- {{confirmed}}</h1>
+    <h1 class="positionThree">Active Cases :- {{active}}</h1>
+    <h1 class="positionThree">Deaths Cases :-  {{deaths}}</h1>
+  </div>
 </ion-content>
